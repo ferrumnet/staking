@@ -27,21 +27,21 @@ interface Config {
 
 const LOCAL_DEV_CONF = {
     // unifyreBackend: 'http://localhost:9000/api/',
-    unifyreBackend: 'https://ube.ferrumnetwork.io/api/',
+    unifyreBackend: '<DEPRECATED>',
     poolDropBackend: 'http://localhost:8080',
     //poolDropBackend: 'http://da208211a392.ngrok.io',
     isProd: false,
 } as Config;
 
 const REMOTE_DEV_CONF = {
-    unifyreBackend: 'https://tbe.ferrumnetwork.io/api/',
-    poolDropBackend: 'https://y6sl343dn6.execute-api.us-east-2.amazonaws.com/default/prod-unifyre-extension-staking-backend',
+    unifyreBackend: '<DEPRECATED>',
+    poolDropBackend: '<PLEASE PROVIDE>',
     isProd: false,
 } as Config;
 
 const PROD_CONF = {
-    unifyreBackend: 'https://ube.ferrumnetwork.io/api/',
-    poolDropBackend: 'https://y6sl343dn6.execute-api.us-east-2.amazonaws.com/default/prod-unifyre-extension-staking-backend',
+    unifyreBackend: '<DEPRECATED>',
+    poolDropBackend: '<PLEASE PROVIDE>',
     isProd: true,
 } as Config;
 
