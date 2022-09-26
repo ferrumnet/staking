@@ -1,6 +1,5 @@
 # Ferrum Staking
 
-<<<<<<< HEAD
 Three packages:
 
 - Contract: Solidity code
@@ -8,7 +7,6 @@ Three packages:
 - Backend: Typescript
 
 
-=======
 The Ferrum staking as a service is an open source implementation of ferrum’s blockchain token staking technology. 
 
 Contract:
@@ -277,5 +275,3 @@ How to contribute :
 - Create a new branch to work on! Branch from develop/main.
 - Implement/fix your feature, comment your code.
 - From your fork open a pull request in the correct branch. Target the project's develop branch 
->>>>>>> Stashed changes
->>>>>>> 08b37fa5dd29d936a6c60a416c0654aacd1d64d0
