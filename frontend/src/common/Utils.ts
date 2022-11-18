@@ -84,6 +84,8 @@ export class Utils {
                 return `https://bscscan.com/address/${addr}`;
             case 'bsc_testnet':
                 return `https://testnet.bscscan.com/address/${addr}`;
+            case 'velas_mainnet':
+                return `https://evmexplorer.velas.com/address/${addr}`;
         }
         return '';
     }
@@ -98,6 +100,8 @@ export class Utils {
                 return `https://bscscan.com/tx/${tid}`;
             case 'bsc_testnet':
                 return `https://testnet.bscscan.com/tx/${tid}`;
+            case 'velas_mainnet':
+                return `https://evmexplorer.velas.com/address/${tid}`;
         }
         return '';
     }
@@ -351,4 +355,10 @@ export const defaultvar = `{"themePrimary": "",
     "white": ""
 }`
 
-export const Networks = ['ETHEREUM','BSC','RINKEBY','BSC_TESTNET', 'POLYGON']
+export const Networks = ['ETHEREUM','BSC','RINKEBY','BSC_TESTNET', 'POLYGON', 'VELAS_MAINNET']
+
+export function isLessThan24HourAgo(date: Number) {
+    const twentyFourHrInMs = 24 * 60 * 60 * 1000;  
+    const twentyFourHoursAgo = Date.now() - twentyFourHrInMs;
+    return date > twentyFourHoursAgo;
+}

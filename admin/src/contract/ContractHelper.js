@@ -6,6 +6,7 @@ const WETH = {
     4: '0xc778417e063141139fce010982780140aa0cd5ab',
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+    106: '0x380f73bAd5E7396B260f737291AE5A8100baabcD',
 }
 
 export const NETWORK_BY_ID = {
@@ -13,6 +14,7 @@ export const NETWORK_BY_ID = {
     4: 'RINKEBY',
     56: 'BSC',
     97: 'BSC_TESTNET',
+    106: 'VELAS_MAINNET'
 }
 
 export const WEB3 = {

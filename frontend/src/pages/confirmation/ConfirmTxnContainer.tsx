@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ConfirmationDispatch, ConfirmationProps, ConfirmTxn } from './ConfirmTxn';
 import {
-    Page, TransactionContinuation, PageTopPart, ThemedText, Row,
+    Page, PageTopPart, ThemedText, Row,
     //@ts-ignore
 } from 'unifyre-web-components';
 import { formatter, Utils } from '../../common/Utils';
+import { TransactionContinuation } from './transactionContinuation';
 
 function ConfirmationComponent(props: ConfirmationProps&ConfirmationDispatch) {
     const successMsg = props.stakeEvent?.type === 'unstake' ? (

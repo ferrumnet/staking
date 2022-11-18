@@ -85,7 +85,8 @@ export class StakingAppService extends MongooseConnection implements Injectable 
 
     async getStakingsForToken(currency: string): Promise<StakingApp[]> {
         this.verifyInit();
-        const apps = await this.stakingModel!.find({currency}).exec() || [];
+        const curr = `${currency.split(':')[0]}:${currency.split(':')[1].toLowerCase()}`
+        const apps = await this.stakingModel!.find({currency: curr}).exec() || [];
         return apps.map(a => a.toJSON());
     }
 

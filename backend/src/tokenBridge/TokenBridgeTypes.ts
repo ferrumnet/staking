@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Connection, Document, Schema } from "mongoose";
 import { CustomTransactionCallRequest } from "unifyre-extension-sdk";
 
@@ -85,6 +86,7 @@ const userBridgeWithdrawableBalanceItemSchema: Schema = new Schema<UserBridgeWit
     receiveAddress: String,
     receiveAmount: String,
     receiveTransactionId: String,
+    //@ts-ignore
     salt: String,
     signedWithdrawHash: String,
     signedWithdrawSignature: String,

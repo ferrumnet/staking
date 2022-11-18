@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { connect } from 'react-redux';
 import {
     Page,PageTopPart,  Row, ThemedText, Gap,InputGroupAddon,ThemedButton, InputCurrency, ErrorMessage,
@@ -14,6 +14,11 @@ function UnstakeTokenComponent(props: UnstakeTokenProps&UnstakeTokenDispatch) {
     const history = useHistory();
     const theme = useContext(ThemeContext);
     const styles = themedStyles(theme);
+
+    useEffect( ()=> {
+        props.onAmountToUnstakeChanged('0')
+    },[])
+
     const error = props.error ? (
         <Row withPadding>
             <ErrorMessage text={props.error} />

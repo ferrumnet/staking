@@ -20,7 +20,8 @@ export const DEFAULT_TOKEN_FOR_WEB3_MODE = {
     1: 'ETHEREUM:0xe5caef4af8780e59df925470b050fb23c43ca68c',
     97: 'BSC_TESTNET:0xae13d989dac2f0debff460ac112a837c89baa7cd',
     56: 'BSC:0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
-    137: 'POLYGON:0xd99bafe5031cc8b345cb2e8c80135991f12d7130'
+    137: 'POLYGON:0xd99bafe5031cc8b345cb2e8c80135991f12d7130',
+    106: 'VELAS_MAINNET:0x997109206Fda586882Ae5aacA74d36EFE2417cA4'
 };
 
 const Actions = ConnectActions;
@@ -93,6 +94,7 @@ async function doConnect(dispatch: Dispatch<AnyAction>,
         await dep.client.signInWithToken('');
         const net = await dep.connect.getProvider()!.netId();
         const network = await dep.connect.network()
+        console.log(dep.currencyList, 'currencyListcurrencyList', network)
         const newNetworkCurrencies = (dep.currencyList.get() || []).filter(c => c.startsWith(network || 'NA'));
         if (net && newNetworkCurrencies.length == 0) {
             const defaultCur = (DEFAULT_TOKEN_FOR_WEB3_MODE as any)[net as any];
@@ -106,6 +108,12 @@ async function doConnect(dispatch: Dispatch<AnyAction>,
             dispatch({type: Actions.DISCONNECT, payload: {}});
             onDisconnected();
         });
+
+        // Subscribe to session disconnection
+        dep.connect.getProvider()!.addEventListener('change', async (reason: string) => {
+            doConnect(dispatch, dep,onDisconnected,onError,connector,onUserDataReceived,isAutoConnect)
+        });
+        
         const res = await connector();
         console.log('CONNECTEOR RETURNED!', res);
         if (res) {
