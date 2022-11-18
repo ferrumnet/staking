@@ -1,6 +1,6 @@
 import {deployContract, call, send, getWeb3} from '../ContractHelper';
 import {abi} from '../staking/abi/FestakedWithReward.json';
-import {bytecode} from '../staking/abi/FestakedWithReward-bytecode.json';
+import {bytecode} from '../staking/abi/FestakedWithReward.json';
 import {toBigInt} from '../../common/Global';
 import {Erc20} from '../Erc20';
 import moment from 'moment';
@@ -10,6 +10,7 @@ const BYTECODES = {
     'RINKEBY': bytecode,
     'BSC': bytecode,
     'BSC_TESTNET': bytecode,
+    'VELAS_MAINNET': bytecode
 };
 
 export function dateToMoment(dt, t, offset) {

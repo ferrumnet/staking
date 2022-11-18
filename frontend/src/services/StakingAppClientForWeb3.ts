@@ -1,14 +1,15 @@
 import { JsonRpcRequest, Network, ValidationUtils } from "ferrum-plumbing";
 import { AnyAction, Dispatch } from "redux";
-import { CustomTransactionCallRequest } from "unifyre-extension-sdk";
+import { CustomTransactionCallRequest, UnifyreExtensionKitClient } from "unifyre-extension-sdk";
 import { AppUserProfile } from "unifyre-extension-sdk/dist/client/model/AppUserProfile";
 import { addAction, CommonActions } from "../common/Actions";
 import { StakingAppClient, StakingAppServiceActions } from "./StakingAppClient";
 import { Big } from 'big.js';
 import { logError } from "../common/Utils";
 import { GroupInfo } from "../common/Types";
-import { IocModule } from "../common/IocModule";
-import { Connect } from "unifyre-extension-web3-retrofit";
+import { inject } from "../common/IocModule";
+import { UnifyreExtensionWeb3Client } from "unifyre-extension-web3-retrofit";
+
 const Actions = StakingAppServiceActions;
 
 export class StakingAppClientForWeb3 extends StakingAppClient {
@@ -80,6 +81,7 @@ export class StakingAppClientForWeb3 extends StakingAppClient {
         try {
             ValidationUtils.isTrue(new Big(amount).gt(new Big('0')), 'Amount must be positive');
             dispatch(addAction(CommonActions.WAITING, { source: 'unstakeSignAndSend' }));
+            const token = this.getToken(dispatch);
             let txs = (await this.api({
                 command: 'unstakeTokenSignAndSendGetTransaction', data: {
                     amount, network, contractAddress, userAddress},
@@ -87,6 +89,8 @@ export class StakingAppClientForWeb3 extends StakingAppClient {
             if (!txs || !txs.length) {
                 dispatch(addAction(Actions.UN_STAKING_FAILED, { message: 'Could not create an un-stake transaction.' }));
             }
+            const connect = inject<UnifyreExtensionKitClient>(UnifyreExtensionWeb3Client);
+            await connect.getUserProfile()
             const requestId = await this.client.sendTransactionAsync(network, txs,
                 {amount, contractAddress, action: 'unstake'});
             if (!requestId) {

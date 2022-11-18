@@ -34,6 +34,7 @@ const networks = [
     { key: 'RINKEBY', text: 'RINKEBY' },
     { key: 'BSC', text: 'BSC' },
     { key: 'BSC_TESTNET', text: 'BSC_TESTNET' },
+    { key: 'VELAS_MAINNET', text: 'VELAS_MAINNET' },
   ];
 
 const stakings = [

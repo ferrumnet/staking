@@ -1,7 +1,7 @@
 import { Injectable, JsonRpcRequest, ValidationUtils, Network, JsonApiClient } from "ferrum-plumbing";
 import { Dispatch, AnyAction } from "redux";
 import { addAction, CommonActions } from "../common/Actions";
-import { logError, Utils } from "../common/Utils";
+import { isLessThan24HourAgo, logError, Utils } from "../common/Utils";
 import { UnifyreExtensionKitClient } from 'unifyre-extension-sdk';
 import { CONFIG } from "../common/IocModule";
 import { AppUserProfile } from "unifyre-extension-sdk/dist/client/model/AppUserProfile";
@@ -124,8 +124,9 @@ export class StakingAppClient implements Injectable {
     async getStakingsForToken(dispatch: Dispatch<AnyAction>,currency: string){
         dispatch(addAction(CommonActions.WAITING, { source: 'signInToServer' }));
         try {
+            const curr = `${currency.split(':')[0]}:${currency.split(':')[1].toLowerCase()}`
             const res = await this.api({
-                command: 'getStakingsForToken', data: {currency}, params: [] } as JsonRpcRequest);
+                command: 'getStakingsForToken', data: {currency: curr}, params: [] } as JsonRpcRequest);
             if(res){
                 return res;
             }
@@ -326,8 +327,7 @@ export class StakingAppClient implements Injectable {
 
     async refreshStakeEvents(dispatch: Dispatch<AnyAction>, events: StakeEvent[]) {
         try {
-            const pendingTxs = events.filter(e => e.transactionStatus === 'pending')
-                .map(tx => tx.mainTxId);
+            const pendingTxs = events.filter(e => e.transactionStatus === 'pending' || isLessThan24HourAgo(e.createdAt))?.map(tx => tx.mainTxId);
             if (!!pendingTxs.length) {
                 const updatedEvents = await this.api({
                     command: 'updateStakingEvents', data: { txIds: pendingTxs }, params: []});

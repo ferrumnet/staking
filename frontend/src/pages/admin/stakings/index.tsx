@@ -10,7 +10,7 @@ import './stakings.scss';
 import { connect } from 'react-redux';
 import { SaerchStakingGroupInfo, SaerchStakingGroupInfoDispatch,SaerchStakingGroupInfoProps } from './stakings';
 import { GroupInfo ,StakingApp } from '../../../common/Types';
-import { stakingFields,editableStakingFields,newStaking } from '../../../common/Utils';
+import { stakingFields,editableStakingFields,newStaking, NetworksDropdownValues } from '../../../common/Utils';
 
 function SaerchStakingInfo(props: SaerchStakingGroupInfoProps&SaerchStakingGroupInfoDispatch) {
     const history  = useHistory();
@@ -178,6 +178,22 @@ function SaerchStakingInfo(props: SaerchStakingGroupInfoProps&SaerchStakingGroup
                                                 checkable
                                                 //@ts-ignore
                                                 onChange={(e:any, selectedOption) => props.onChangeCurrency( option[`${selectedOption.value}`].toString(), props.groupInfos, props.fetchStakings ) }
+                                            />
+                                            <Gap/>
+                                        </>
+
+                                    : (i === 'network') ? 
+                                        <>
+                                            <Gap/>
+                                            <div> {i} </div>
+                                            <Gap size={"small"}/>
+                                            <Dropdown
+                                                items={NetworksDropdownValues.map(e=>e.identifier)}
+                                                placeholder={`Select Network`}
+                                                checkable
+                                                value={props.selectedStaking[`${i}`] || ''}
+                                                onChange={(e:any, selectedOption) => props.onSelectedInfoChange(selectedOption.value || '', `${i}`)}
+                                                //@ts-ignore
                                             />
                                             <Gap/>
                                         </>
