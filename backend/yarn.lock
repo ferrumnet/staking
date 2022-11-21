@@ -4557,6 +4557,7 @@ elliptic@6.5.4, elliptic@^6.4.0, elliptic@^6.5.2, elliptic@^6.5.3, elliptic@^6.5
 
 "elliptic@https://github.com/ferrumnet/elliptic.git":
   version "6.5.3"
+  uid "3ebee0849d933f76cc18f0b6e3ded3d25156f016"
   resolved "https://github.com/ferrumnet/elliptic.git#3ebee0849d933f76cc18f0b6e3ded3d25156f016"
   dependencies:
     bn.js "^4.11.9"
@@ -5177,7 +5178,7 @@ fb-watchman@^2.0.0:
 
 "ferrum-plumbing@git+https://github.com/ferrumnet/ferrum-plumbing.git":
   version "1.0.0"
-  resolved "git+https://github.com/ferrumnet/ferrum-plumbing.git#cc36954d9f54e795e1c7ff750a235ae752724015"
+  resolved "git+https://github.com/ferrumnet/ferrum-plumbing.git#b206ce4164e4a5c66aeab247786f9189d524a05d"
   dependencies:
     cross-fetch "^3.0.4"
 
