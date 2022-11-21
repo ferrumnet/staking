@@ -26,9 +26,9 @@ function ConfirmationComponent(props: ConfirmationProps&ConfirmationDispatch) {
             </PageTopPart>
             <TransactionContinuation
                 requestId={Utils.getQueryparam('continuation')}
-                network={props.stakeEvent?.network}
+                network={props.stakeEvent?.network || ''}
                 onLoad={props.onLoad}
-                txIds={[...(props.stakeEvent?.approveTxIds || []), props.stakeEvent?.mainTxId].filter(Boolean)}
+                txIds={[...(props.stakeEvent?.approveTxIds || []), props.stakeEvent?.mainTxId].filter(Boolean) as any}
                 okButtonText={props.action === 'stake' ? 'Stake more' : 'Check other opportunities'}
                 okButtonUrl={`${gidPrefix}/info/${props.stakeEvent?.contractAddress}`}
                 backButtonUrl={props.stakeEvent ? `${gidPrefix}/info/${props.stakeEvent?.contractAddress}` : `${gidPrefix}/`}

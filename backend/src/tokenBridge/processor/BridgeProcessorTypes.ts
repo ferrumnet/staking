@@ -22,8 +22,16 @@ export interface BridgeProcessorConfig {
     contractClient: {[k: string]: string};
 }
 
-//@ts-ignore
-const bridgeTokenConfigSchema: Schema = new Schema<BridgeProcessorConfig>({
+interface SchemaProcessorConfig {
+    sourceNetwork: String;
+    targetNetwork: String;
+    sourceCurrency: String;
+    targetCurrency: String;
+    feeConstant: String;
+    feeRatio: String;
+}
+
+const bridgeTokenConfigSchema: Schema = new Schema<SchemaProcessorConfig>({
     sourceNetwork: String,
     targetNetwork: String,
     sourceCurrency: String,

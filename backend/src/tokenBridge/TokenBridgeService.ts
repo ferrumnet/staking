@@ -136,7 +136,7 @@ export class TokenBridgeService extends MongooseConnection implements Injectable
         const txItem = (item.useTransactions || []).find(t => t.id === tid);
         if (!!txItem) {
             const txStatus = await this.helper.getTransactionStatus(item!.sendNetwork, tid, txItem.timestamp);
-            txItem.status = txStatus;
+            txItem.status = txStatus || '';
             console.log(`Updating status for withdraw item ${id}: ${txStatus}-${tid}`);
             if(txStatus === ('timedout' || 'failed')){
                 item.used = 'failed';
@@ -149,7 +149,7 @@ export class TokenBridgeService extends MongooseConnection implements Injectable
             const txTime = Date.now();
             const txStatus = await this.helper.getTransactionStatus(item!.sendNetwork, tid, txTime);
             item.useTransactions = item.useTransactions || [];
-            item.useTransactions.push({id: tid, status: txStatus, timestamp: txTime});
+            item.useTransactions.push({id: tid, status: txStatus || '', timestamp: txTime});
             if(txStatus === ('timedout' || 'failed')){
                 item.used = 'failed';
             }else if(txStatus === 'successful'){
@@ -199,7 +199,7 @@ export class TokenBridgeService extends MongooseConnection implements Injectable
 
     }
     
-    async updateUserPairedAddress(pair: SignedPairAddress) {
+    async updateUserPairedAddress(pair: SignedPairAddress): Promise<any> {
         this.verifyInit();
         ValidationUtils.isTrue(!!pair.pair, 'Invalid pair (empty)');
         ValidationUtils.isTrue(!!pair.pair.address1 && !!pair.pair.address2, 'Both addresses are required');

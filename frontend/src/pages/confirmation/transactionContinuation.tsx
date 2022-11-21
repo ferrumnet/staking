@@ -3,6 +3,7 @@ import failed from './images/failed.png';
 import { Utils } from '../../common/Utils';
 import loading from './images/loading.gif';
 import { useHistory } from 'react-router-dom';
+//@ts-ignore
 import { Row, Gap, ThemedText, ThemedLink, WebThemedButton as ThemedButton } from 'unifyre-web-components';
 import { ThemeContext } from 'unifyre-react-helper';
 import greenTick from '../../images/green-tick.png';
@@ -10,7 +11,7 @@ import greenTick from '../../images/green-tick.png';
 function FailedTransactionView({
     network,
     txIds,
-}) {
+}: {network: string, txIds: string[]}) {
     return (
         <>
             <Gap/>
@@ -43,7 +44,7 @@ function PendingTransactionView({
     network,
     txIds,
     transactionStatus,
-}) {
+}: {network: string, txIds: string[], transactionStatus: string})  {
     return (
         <>
             <Gap/>
@@ -90,7 +91,7 @@ function SuccessfulTransactionView({
     successMessage,
     okButtonText,
     okButtonUrl,
-}) {
+}: {network: string, txIds: string[], successMessage: string, okButtonText: string, okButtonUrl: string})  {
     const theme = useContext(ThemeContext);
     const styles = themedStyles(theme);
     const history = useHistory();
@@ -136,7 +137,12 @@ function SuccessfulTransactionView({
 export function TransactionContinuation({
         network, requestId, onLoad, txIds, okButtonText, okButtonUrl, backButtonUrl,
         onRefresh, transactionStatus, error, successMessage,
-    }) {
+    }: {
+        network: string, txIds: (string)[], successMessage: string,
+        okButtonText: string, okButtonUrl: string, backButtonUrl: string,
+        onRefresh: () => any, transactionStatus: string, error?: string,
+        requestId?: string, onLoad: (v:string) => void
+    })  {
     const history = useHistory();
     useEffect(() => {
         console.log('heloooooooo',requestId)
@@ -148,7 +154,6 @@ export function TransactionContinuation({
     useEffect(() => {
         if (transactionStatus === 'pending'){
             const interval = setInterval(() => {
-                console.log('callinginngngngn')
                 onRefresh().catch(console.error);
               }, 15000);
             return () => clearInterval(interval);
@@ -192,7 +197,7 @@ export function TransactionContinuation({
 }
 
 // TODO: Utilize the theme??
-const themedStyles = (theme) => ({
+const themedStyles = (theme: any) => ({
     stakingInfoHeader: { 
         justifyContent: 'center',  
         fontSize: '19px',

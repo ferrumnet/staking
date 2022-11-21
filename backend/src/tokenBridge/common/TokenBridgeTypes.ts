@@ -38,7 +38,7 @@ const BRIDGE_CONTRACT = {
     'BSC_TESTNET': '0x0000000000000000000000000000000000000000',
 } as any;
 
-export function domainSeparator(network: string): DomainSeparator {
+export function domainSeparator(network: string): DomainSeparator & { salt: string } {
     const chainId = CHAIN_ID_FOR_NETWORK[network];
     return ({
         chainId: chainId,
