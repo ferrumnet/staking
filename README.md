@@ -29,7 +29,7 @@ From terminal :-
 
 - click on deploy and approve wallet transaction.
 
-- after deploy contract address is deployed, address is displayed on alert box
+- after successful execution of transaction, deployment address is displayed on an alert box on admin dashboard.
 
 Backend :
 
@@ -37,13 +37,13 @@ From terminal: -
 
 - change directory into backend directory.
 
-- add environment config as provided
+- add environment config as provided to a file .env in root backend directory.
 
 - run yarn install
 
 - after installation of dependencies, from terminal run `node sim_lambda.js`;
 
-- this will start the backend on port 8080
+- this will start the backend on port 8080.
 
 Frontend :
 
@@ -51,15 +51,15 @@ from terminal: -
 
 - change directory into frontend directory.
 
-- Run yarn install
+- Run `yarn install`
 
-- Run yarn start
+- Run `yarn start`
 
-- from browser,naviagte to `localhost:port/admin/login`.
+- from browser, naviagte to `localhost:port/admin/login`.
 
 - password input field is displayed, connect wallet (metamask) and enter admin password as set from config.
 
-- on successful submit navigates to admin dashboard.
+- on successfull login, navigates to admin dashboard.
 
 On Admin dashboard :
 
@@ -85,8 +85,7 @@ from admin dashboard, click on groupinfo tab and `add new group info` button.
 
 - navigate to saved staking details card and enter provided url in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`
 
-
-Repository details:
+Architecture details:
 
 The Ferrum staking as a service is an open source implementation of ferrum’s blockchain token staking technology. 
 
