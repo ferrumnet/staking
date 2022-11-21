@@ -1,6 +1,6 @@
 # Ferrum Staking
 
-Steps to Run Locally:
+## Steps to Run Locally
 
 - clone repository `https://github.com/ferrumnet/staking`.
 
