@@ -1,11 +1,91 @@
 # Ferrum Staking
 
-Three packages:
+Steps to Run Locally:
 
-- Contract: Solidity code
-- Frontend: Typescript
-- Backend: Typescript
+- clone repository `https://github.com/ferrumnet/staking`.
 
+Hardware Requirements:
+- npm 14
+- yarn
+
+Respoistory directory comprises of 3 directories :
+- frontend
+- backend
+- admin
+
+To run Admin directory:
+
+From terminal :-
+
+- run yarn install
+
+- run yarn start
+
+- open url **https://localhost:3000/admin/deploy?network=VELAS_MAINNET&token=xx&rewardToken=xx&name=xxx&stakingCap=xxxx&stakingStart=xxx&stakingEnd=xxx&withdrawStart=xxx&withdrawEnd=xx&eventsTime=xx** in browser.
+
+- connect metamask and swtich to velas network.
+
+- Enter all required details to deploy a new staking contract.
+
+- click on deploy and approve wallet transaction.
+
+- after successful execution of transaction, deployment address is displayed on an alert box on admin dashboard.
+
+Backend :
+
+From terminal: -
+
+- change directory into backend directory.
+
+- add environment config as provided to a file .env in root backend directory.
+
+- run yarn install
+
+- after installation of dependencies, from terminal run `node sim_lambda.js`;
+
+- this will start the backend on port 8080.
+
+Frontend :
+
+from terminal: -
+
+- change directory into frontend directory.
+
+- Run `yarn install`
+
+- Run `yarn start`
+
+- from browser, naviagte to `localhost:port/admin/login`.
+
+- password input field is displayed, connect wallet (metamask) and enter admin password as set from config.
+
+- on successfull login, navigates to admin dashboard.
+
+On Admin dashboard :
+
+**Set up groupinfo (OPTIONAL)**
+
+The group info controls user look and feel. 
+
+from admin dashboard, click on groupinfo tab and `add new group info` button.
+
+- enter all required fields and save new group info.
+
+**Add deployed contract to staking group**
+
+- from admin dashboard, click on `stakings` cards.
+
+- search for group info from search bar (use `frm` group if no custom group setup)
+
+- click on preferred groupinfo
+
+- on groupinfo details page, click on `add staking to group`
+
+- Enter required details including smart-contract address, network, etc and save details.
+
+- navigate to saved staking details card and enter provided url in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`
+
+Architecture details:
 
 The Ferrum staking as a service is an open source implementation of ferrum’s blockchain token staking technology. 
 

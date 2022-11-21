@@ -191,9 +191,9 @@ function SaerchStakingInfo(props: SaerchStakingGroupInfoProps&SaerchStakingGroup
                                                 items={NetworksDropdownValues.map(e=>e.identifier)}
                                                 placeholder={`Select Network`}
                                                 checkable
+                                                //@ts-ignore
                                                 value={props.selectedStaking[`${i}`] || ''}
                                                 onChange={(e:any, selectedOption) => props.onSelectedInfoChange(selectedOption.value || '', `${i}`)}
-                                                //@ts-ignore
                                             />
                                             <Gap/>
                                         </>

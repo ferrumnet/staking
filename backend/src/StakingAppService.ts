@@ -93,7 +93,7 @@ export class StakingAppService extends MongooseConnection implements Injectable 
     async getStaking(network: string, contractAddress: string): Promise<StakingApp|undefined> {
         this.verifyInit();
         const apps = await this.stakingModel!.find({contractAddress}).exec() || [];
-        const allStakes = apps.map(a => a.toJSON());
+        const allStakes = apps.map(a => a.toJSON()) as StakingApp[];
         if (allStakes.length === 1 && !network) {
             return allStakes[0];
         }
@@ -134,21 +134,21 @@ export class StakingAppService extends MongooseConnection implements Injectable 
                 stakingContract!.contractType).helper.symbol(contCur);
         }
         // Get all user stakes
-        const stakeEvents = await this.userStakesForContracts(userId, contractAddress);
+        const stakeEvents = await this.userStakesForContracts(userId, contractAddress) as StakeEvent[];
         return [userStake, stakingContract!, stakeEvents];
     }
 
     async getUserStakingEvents(userId: string, currency: string):
         Promise<StakeEvent[]> {
         // Get all user stakeEvents
-        const stakeEvents = await this.userStakeEvents(userId, currency);
+        const stakeEvents = await this.userStakeEvents(userId, currency) as StakeEvent[];
         return stakeEvents;
     }
 
     async getGroupInfo(groupId: string): Promise<GroupInfo|undefined> {
         this.verifyInit();
         ValidationUtils.isTrue(!!groupId, '"groupId" must be provided');
-        const r = await this.groupInfoModel!.findOne({groupId}).exec();
+        const r = await this.groupInfoModel!.findOne({groupId}).exec() as any;
         if (r) {
             return r.toJSON();
         }
@@ -174,7 +174,7 @@ export class StakingAppService extends MongooseConnection implements Injectable 
         ValidationUtils.isTrue(!!info.homepage, '"homepage" must be provided');
         ValidationUtils.isTrue(!!info.themeVariables, '"themeVariables" must be provided');
         ValidationUtils.isTrue(!!info.defaultCurrency, '"defaultCurrency" must be provided');
-        const r = await this.updateGroupInfoItem(info);
+        const r = await this.updateGroupInfoItem(info) as GroupInfo;
         if (r) {
             return r;
         }
@@ -530,7 +530,7 @@ export class StakingAppService extends MongooseConnection implements Injectable 
 
     private async getUserStakeEvent(mainTxId: string): Promise<StakeEvent | undefined> {
         this.verifyInit();
-        const stakes = await this.stakeEventModel!.findOne({mainTxId}).exec();
+        const stakes = await this.stakeEventModel!.findOne({mainTxId}).exec() as any;
         return stakes?.toJSON();
     }
 
