@@ -140,7 +140,7 @@ function SaerchStakingInfo(props: SaerchStakingGroupInfoProps&SaerchStakingGroup
                     }
                     <Gap/>
                     <div>
-                        <PrimaryButton onClick={()=>props.addNewStakings(props.selectedStaking,props.onReturn,()=>props.fetchStakings(props.currency))}>
+                        <PrimaryButton onClick={()=>props.addNewStakings(props.selectedStaking,props.onNew,()=>props.fetchStakings(props.currency))}>
                             {'Add Staking to Group'}
                         </PrimaryButton>
                     </div>
