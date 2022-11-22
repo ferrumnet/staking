@@ -110,14 +110,14 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
             dispatch(addAction(CommonActions.WAITING, { source: 'dashboard' }));
             await IocModule.init(dispatch);
             const client = inject<StakingAppClient>(StakingAppClient);
+            await client.checkAdminToken(dispatch);
             const res = await client.addNewStakingToGroup(dispatch,staking);
             if(res)
             {
                 dispatch(addAction(SaerchStakingGroupInfoActions.STAKING_INFOS_SAVED, { data: res[0] }));
-                cb();
                 fp();
-                dispatch(addAction(SaerchStakingGroupInfoActions.RETURN,{}))
             }
+            cb();
         } catch (error) {
             console.log(error);
         } finally {
@@ -129,6 +129,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
             dispatch(addAction(CommonActions.WAITING, { source: 'dashboard' }));
             await IocModule.init(dispatch);
             const client = inject<StakingAppClient>(StakingAppClient);
+            await client.checkAdminToken(dispatch);
             delete staking._id
             const res = await client.updateStakingInfo(dispatch,staking);
             if(res)
@@ -148,6 +149,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
             dispatch(addAction(CommonActions.WAITING, { source: 'dashboard' }));
             await IocModule.init(dispatch);
             const client = inject<StakingAppClient>(StakingAppClient);
+            await client.checkAdminToken(dispatch);
             delete staking._id
             const res = await client.deleteStakingInfo(dispatch,staking);
             if(res)

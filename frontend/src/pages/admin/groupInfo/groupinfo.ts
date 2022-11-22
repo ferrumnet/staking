@@ -104,6 +104,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
         try {
             dispatch(addAction(CommonActions.WAITING, { source: 'dashboard' }));
             const client = inject<StakingAppClient>(StakingAppClient);
+            await client.checkAdminToken(dispatch);
             //@ts-ignore
             infos.defaultCurrency = `${infos.network}:${(infos as any)['contractAddress'].toLowerCase()}`
             console.log('About to update gi', infos)
@@ -121,6 +122,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
         try {
             // dispatch(addAction(CommonActions.WAITING, { source: 'dashboard' }));
             const client = inject<StakingAppClient>(StakingAppClient);
+            await client.checkAdminToken(dispatch);
             //@ts-ignore
             infos.defaultCurrency = `${infos.network}:${infos['contractAddress'].toLowerCase()}`
             const error = checkEmpty(infos);
