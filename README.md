@@ -13,17 +13,23 @@ Respoistory directory comprises of 3 directories :
 - backend
 - admin
 
-To run Admin directory:
+To run Staking contract deployer directory:
 
 From terminal :-
 
-- run yarn install
+- Change directory to admin directory
+
+- run yarn install (It is mandatory to use yarn for this command in order to ensure appriopriate dependecy versioning)
 
 - run yarn start
 
-- open url **https://localhost:3000/admin/deploy?network=VELAS_MAINNET&token=xx&rewardToken=xx&name=xxx&stakingCap=xxxx&stakingStart=xxx&stakingEnd=xxx&withdrawStart=xxx&withdrawEnd=xx&eventsTime=xx** in browser.
+- from browser add velas network to matemask from https://chainlist.org/ (if not present).
 
-- connect metamask and swtich to velas network.
+- open url http://localhost:3000/admin/deploy?network=VELAS_MAINNET&token=0xe6ff690cc7b91a2b626f7a76fe507028bc1eb12d&rewardToken=0xe6ff690cc7b91a2b626f7a76fe507028bc1eb12d&name=enterStakingPoolNameHere&stakingCap=enterStakingCapHere&stakingStart=selectStakingStartDateFromUiField&stakingEnd=selectStakingEndDateFromUiField&withdrawStart=selectWithdrawalStartDateFromUiField&withdrawEnd=selectWithdrawalEndDateFromUiField&eventsTime=selectTimeOfOccurenceFromUiField in browser.
+
+**NB: token and reward token params in above url can changed to desired staking token address as required**
+
+- connect metamask to site and switch to velas network.
 
 - Enter all required details to deploy a new staking contract.
 
@@ -31,31 +37,32 @@ From terminal :-
 
 - after successful execution of transaction, deployment address is displayed on an alert box on admin dashboard.
 
-Backend :
+
+### Backend :
 
 From terminal: -
 
 - change directory into backend directory.
 
-- add environment config as provided to a file .env in root backend directory.
+- create .env file in backend root directory and add environment config as provided to file.
 
-- run yarn install
+- run yarn install (It is mandatory to use yarn for this command in order to ensure appriopriate dependecy versioning)
 
 - after installation of dependencies, from terminal run `node sim_lambda.js`;
 
 - this will start the backend on port 8080.
 
-Frontend :
+### Frontend :
 
-from terminal: -
+From terminal: -
 
 - change directory into frontend directory.
 
-- Run `yarn install`
+- Run `yarn install` (It is mandatory to use yarn for this command in order to ensure appriopriate dependecy versioning)
 
 - Run `yarn start`
 
-- from browser, naviagte to `localhost:port/admin/login`.
+- from browser, naviagte to `localhost:{port}/admin/login` (where port is the port opened by above command).
 
 - password input field is displayed, connect wallet (metamask) and enter admin password as set from config.
 
@@ -71,19 +78,25 @@ from admin dashboard, click on groupinfo tab and `add new group info` button.
 
 - enter all required fields and save new group info.
 
-**Add deployed contract to staking group**
+**To Add deployed contract to staking group**
 
-- from admin dashboard, click on `stakings` cards.
+- from admin dashboard [localhost:port/admin/], click on `stakings` cards.
 
-- search for group info from search bar (use `frm` group if no custom group setup)
+- search for group info from search bar (use `frm` group if no custom group is setup)
 
-- click on preferred groupinfo
+- click on preferred groupinfo from search results.
 
-- on groupinfo details page, click on `add staking to group`
+- On groupinfo details page, click on `add staking to group`
 
-- Enter required details including smart-contract address, network, etc and save details.
+- Enter required details including staking contract address, network and contract type. 
 
-- navigate to saved staking details card and enter provided url in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`
+- Click on save details after completing form.
+
+- On success, navigate to just added staking card and click on card.
+
+- On details page, enter any additional details required for the pool e.g logo , name etc and click on save.
+
+- On detail page, replace stake.unifyre.io with localhost:3000 and https with http in the staking url provided and open in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`
 
 Architecture details:
 
