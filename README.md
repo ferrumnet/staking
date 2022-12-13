@@ -40,7 +40,7 @@ From terminal :-
 
 **To Add rewards to a staking pool**
 
-- from admin url , go to url http://localhost:3000/admin/addReward
+- from admin url set up in previous step , go to url http://localhost:3000/admin/addReward
 
 - ensure to connect metamask to deployed contract network from previous step.
 
