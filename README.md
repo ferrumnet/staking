@@ -5,15 +5,15 @@
 - clone repository `https://github.com/ferrumnet/staking`.
 
 Hardware Requirements:
-- npm 14
+- node version 14.18.2
 - yarn
 
-Respoistory directory comprises of 3 directories :
+The respository directory comprises of 3 directories :
 - frontend
 - backend
 - admin
 
-To run Staking contract deployer directory:
+**To run Staking contract deployer directory (admin):**
 
 From terminal :-
 
@@ -38,19 +38,37 @@ From terminal :-
 - after successful execution of transaction, deployment address is displayed on an alert box on admin dashboard.
 
 
+**To Add rewards to a staking pool**
+
+- from admin url , go to url http://localhost:3000/admin/addReward
+
+- ensure to connect metamask to deployed contract network from previous step.
+
+- enter reward details in form i.e deployed contract address, reward amount and early reward amount.
+
+- execute approval transaction from wallet prompt.
+
+- after approval confirmtation, execute add reward transaction. 
+
+<br />
+
+## User staking interface set up
+
 ### Backend :
 
-From terminal: -
+From terminal : -
 
-- change directory into backend directory.
+- Change directory into backend directory.
 
-- create .env file in backend root directory and add environment config as provided to file.
+- Create .env file in backend root directory and add environment config as provided to file.
 
-- run yarn install (It is mandatory to use yarn for this command in order to ensure appriopriate dependecy versioning)
+- Run yarn install (It is mandatory to use yarn for this command in order to ensure appriopriate dependecy versioning)
 
-- after installation of dependencies, from terminal run `node sim_lambda.js`;
+- After installation of dependencies, from terminal run `node sim_lambda.js`;
 
-- this will start the backend on port 8080.
+- This will start the backend on port 8080.
+
+<br />
 
 ### Frontend :
 
@@ -80,9 +98,9 @@ from admin dashboard, click on groupinfo tab and `add new group info` button.
 
 **To Add deployed contract to staking group**
 
-- from admin dashboard [localhost:port/admin/], click on `stakings` cards.
+- from admin dashboard [localhost:port/admin/], click on `stakings` card.
 
-- search for group info from search bar (use `frm` group if no custom group is setup)
+- search for group info from search bar ,ensure to select group info associated with staking token in contract (e.g use `frm (for frm test token on bsc) or velas_group_info (for afrm on velas network)` group if no custom group is setup)
 
 - click on preferred groupinfo from search results.
 
@@ -94,11 +112,17 @@ from admin dashboard, click on groupinfo tab and `add new group info` button.
 
 - On success, navigate to just added staking card and click on card.
 
-- On details page, enter any additional details required for the pool e.g logo , name etc and click on save.
+- On details page, enter any additional details required for the pool e.g logo, pool name etc and save.
 
-- On detail page, replace stake.unifyre.io with localhost:3000 and https with http in the staking url provided and open in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`
+- After saving, reselect staking card for the added contract from previous step.
 
-Architecture details:
+- The user staking url is displayed at the top of the form. Replace stake.unifyre.io with localhost:3000 and https with http in the staking url provided and open in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`.
+
+- users can stake , unstake and early withdraw from provided url in previous step.
+
+<br />
+ 
+# Architecture details
 
 The Ferrum staking as a service is an open source implementation of ferrum’s blockchain token staking technology. 
 

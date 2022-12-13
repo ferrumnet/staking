@@ -15,7 +15,7 @@ export interface ConfirmationProps extends ContinuationState {
 }
 
 export interface ConfirmationDispatch {
-    onLoad: (requestId: string) => Promise<void>;
+    onLoad: (requestId: string, network?: string) => Promise<void>;
     onRefresh: (props: ConfirmationProps) => Promise<void>
 }
 
@@ -45,9 +45,9 @@ function mapStateToProps(state: RootState): ConfirmationProps {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
-    onLoad: async (requestId: string) => {
+    onLoad: async (requestId: string, network: string) => {
         const client = inject<StakingAppClient>(StakingAppClient);            
-        await client.processRequest(dispatch, requestId);
+        await client.processRequest(dispatch, requestId, network);
     },
     onRefresh: async (props:ConfirmationProps) => {
         if (!props.stakeEvent) { return; }
