@@ -61,7 +61,7 @@ export class StakingAppClientForWeb3 extends StakingAppClient {
             if (!requestId) {
                 dispatch(addAction(Actions.STAKING_FAILED, { message: 'Could not submit transaction.' }));
             }
-            await this.processRequest(dispatch, requestId);
+            await this.processRequest(dispatch, requestId, network);
             return 'success';
         } catch (e) {
             logError('Error signAndSend', e);
@@ -96,7 +96,7 @@ export class StakingAppClientForWeb3 extends StakingAppClient {
             if (!requestId) {
                 dispatch(addAction(Actions.UN_STAKING_FAILED, { message: 'Could not submit transaction.' }));
             }
-            await this.processRequest(dispatch, requestId);
+            await this.processRequest(dispatch, requestId, network);
             return 'success';
         } catch (e) {
             logError('Error unstakeSsignAndSend', e);
@@ -126,7 +126,7 @@ export class StakingAppClientForWeb3 extends StakingAppClient {
             if (!requestId) {
                 dispatch(addAction(Actions.UN_STAKING_FAILED, { message: 'Could not submit transaction.' }));
             }
-            await this.processRequest(dispatch, requestId);
+            await this.processRequest(dispatch, requestId, network);
             return 'success';
         } catch (e) {
             logError('Error takeRewardsSsignAndSend', e);
