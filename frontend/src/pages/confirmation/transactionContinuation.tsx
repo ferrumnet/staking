@@ -141,13 +141,12 @@ export function TransactionContinuation({
         network: string, txIds: (string)[], successMessage: string,
         okButtonText: string, okButtonUrl: string, backButtonUrl: string,
         onRefresh: () => any, transactionStatus: string, error?: string,
-        requestId?: string, onLoad: (v:string) => void
+        requestId?: string, onLoad: (v:string, y: string) => void
     })  {
     const history = useHistory();
     useEffect(() => {
-        console.log('heloooooooo',requestId)
         if (requestId) {
-            onLoad(requestId);
+            onLoad(requestId, network);
         }
     }, [onLoad, requestId]);
     

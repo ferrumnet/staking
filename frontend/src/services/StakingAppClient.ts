@@ -382,7 +382,7 @@ export class StakingAppClient implements Injectable {
                 dispatch(addAction(Actions.STAKING_FAILED, { message: 'Could not send a sign request.' }));
             }
             openUnifyre();
-            await this.processRequest(dispatch, requestId);
+            await this.processRequest(dispatch, requestId, network);
             return 'success' as string;
         } catch (e) {
             logError('Error signAndSend', e);
@@ -412,7 +412,7 @@ export class StakingAppClient implements Injectable {
                 dispatch(addAction(Actions.UN_STAKING_FAILED, { message: 'Could not send a sign request.' }));
             }
             openUnifyre();
-            await this.processRequest(dispatch, requestId);
+            await this.processRequest(dispatch, requestId, network);
             return 'success' as string;
         } catch (e) {
             logError('Error signAndSend', e);
@@ -439,7 +439,7 @@ export class StakingAppClient implements Injectable {
                 dispatch(addAction(Actions.UN_STAKING_FAILED, { message: 'Could not send a sign request.' }));
             }
             openUnifyre();
-            await this.processRequest(dispatch, requestId);
+            await this.processRequest(dispatch, requestId, network);
             return 'success' as string;
         } catch (e) {
             logError('Error signAndSend', e);
@@ -450,7 +450,9 @@ export class StakingAppClient implements Injectable {
     }
 
     async processRequest(dispatch: Dispatch<AnyAction>, 
-        requestId: string) {
+        requestId: string,
+        networkParam: string,
+    ) {
         const token = this.getToken(dispatch);
         try {
             dispatch(addAction(CommonActions.WAITING, { source: 'processRequest' }));
@@ -463,9 +465,11 @@ export class StakingAppClient implements Injectable {
             const { amount, network, contractAddress, action } = payload;
             const res = await this.api({
                 command: 'stakeEventProcessTransactions', data: {
-                    token, amount, eventType: action || 'stake',
-                    network,
-                    contractAddress, txIds},
+                    token, amount,
+                    eventType: action || 'stake',
+                    network: network || networkParam,
+                    contractAddress, txIds
+                },
                 params: []}as JsonRpcRequest) as {stakeEvent?: StakeEvent};
             const stakeEvent = res.stakeEvent;
             ValidationUtils.isTrue(!!stakeEvent, 'Error while getting the transaction! Your stake might have been executed. Please check etherscan for a pending stake transation');
