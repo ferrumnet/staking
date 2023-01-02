@@ -383,3 +383,11 @@ export function isLessThan24HourAgo(date: Number) {
     const twentyFourHoursAgo = Date.now() - twentyFourHrInMs;
     return date > twentyFourHoursAgo;
 }
+
+export const getStakingUrl = (groupId: string, contractAddress: string, network: string) => {
+    console.log(window.location.origin, 'href')
+    if (window.location.href.includes('http://localhost')) {
+        return `${window.location.origin}/${groupId}/info/${contractAddress}/${network}`
+    }
+    return `https://stake.unifyre.io/${groupId}/info/${contractAddress}/${network}`
+}
