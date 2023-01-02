@@ -82,7 +82,7 @@ From terminal: -
 
 - from browser, naviagte to `localhost:{port}/admin/login` (where port is the port opened by above command).
 
-- password input field is displayed, connect wallet (metamask) and enter admin password as set from config.
+- On login page, the password input field is displayed, connect wallet (metamask) and enter admin password as set from env config.
 
 - on successfull login, navigates to admin dashboard.
 
@@ -90,17 +90,17 @@ On Admin dashboard :
 
 **Set up groupinfo (OPTIONAL)**
 
-The group info controls user look and feel. 
+The group info controls user look and feel on staking pages. 
 
 from admin dashboard, click on groupinfo tab and `add new group info` button.
 
-- enter all required fields and save new group info.
+- enter all required fields and save new group info (ensure group info name contains no space character within it).
 
 **To Add deployed contract to staking group**
 
 - from admin dashboard [localhost:port/admin/], click on `stakings` card.
 
-- search for group info from search bar ,ensure to select group info associated with staking token in contract (e.g use `frm (for frm test token on bsc) or velas_group_info (for afrm on velas network)` group if no custom group is setup)
+- search for group info from search bar ,ensure to select group info associated with the staking token in contract (e.g use `frm (for frm test token on bsc) or velas_group_info (for afrm on velas network)` group if no custom group is setup)
 
 - click on preferred groupinfo from search results.
 
@@ -114,9 +114,11 @@ from admin dashboard, click on groupinfo tab and `add new group info` button.
 
 - On details page, enter any additional details required for the pool e.g logo, pool name etc and save.
 
-- After saving, reselect staking card for the added contract from previous step.
+- After successful saving, the page navigates to the staking list.
 
-- The user staking url is displayed at the top of the form. Replace stake.unifyre.io with localhost:3000 and https with http in the staking url provided and open in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`.
+- Reselect the just added contract from the staking card list displayed.
+
+- The user staking url is displayed at the top of the staking form. ( Optional on localhost: Replace https://stake.unifyre.io with http://localhost:3000 (or associated localhost url) in the staking url provided and open in browser. e.g `http://localhost:3001/frm/info/0x86e8d1c0e566f0d604b6316cb0eb59777eba92f8/VELAS_MAINNET`).
 
 - users can stake , unstake and early withdraw from provided url in previous step.
 

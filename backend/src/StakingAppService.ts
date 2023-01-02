@@ -161,6 +161,9 @@ export class StakingAppService extends MongooseConnection implements Injectable 
         ValidationUtils.isTrue(!!info.homepage, '"homepage" must be provided');
         ValidationUtils.isTrue(!!info.themeVariables, '"themeVariables" must be provided');
         ValidationUtils.isTrue(!!info.defaultCurrency, '"defaultCurrency" must be provided');
+        const existingGroup = await this.groupInfoModel!.find({defaultCurrency: info.defaultCurrency}).exec() as any;
+        ValidationUtils.isTrue(!existingGroup.length, `A group info with id ${(existingGroup || [])[0]?.groupId || ''} already exsits for the associated default currency`);
+        info.groupId = (info.groupId || '').replace(/ /g,"_");
         const r = await new this.groupInfoModel!({...info}).save();
         if (r) {
             return r;

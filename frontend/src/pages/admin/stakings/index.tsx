@@ -10,7 +10,7 @@ import './stakings.scss';
 import { connect } from 'react-redux';
 import { SaerchStakingGroupInfo, SaerchStakingGroupInfoDispatch,SaerchStakingGroupInfoProps } from './stakings';
 import { GroupInfo ,StakingApp } from '../../../common/Types';
-import { stakingFields,editableStakingFields,newStaking, NetworksDropdownValues } from '../../../common/Utils';
+import { stakingFields,editableStakingFields,newStaking, NetworksDropdownValues, getStakingUrl } from '../../../common/Utils';
 
 function SaerchStakingInfo(props: SaerchStakingGroupInfoProps&SaerchStakingGroupInfoDispatch) {
     const history  = useHistory();
@@ -159,7 +159,14 @@ function SaerchStakingInfo(props: SaerchStakingGroupInfoProps&SaerchStakingGroup
                     <Gap size={"small"}/>
                     <Divider/>
                     <Row centered>
-                        <div> Staking Url : {`https://stake.unifyre.io/${getGroupId(props.currency)}/info/${props.selectedStaking.contractAddress}/${props.selectedStaking.network}`}</div>
+                        <div> Staking Url : { 
+                            getStakingUrl (
+                                getGroupId(props.currency),
+                                props.selectedStaking.contractAddress,
+                                props.selectedStaking.network
+                            )
+                        }
+                        </div>
                     </Row>
                     <Gap/>
                     <Gap/>
