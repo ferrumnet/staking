@@ -22,6 +22,9 @@
     "typechain": "^8.1.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.7.2"
-  }
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@openzeppelin/contracts": "^4.7.2",
+    "@openzeppelin/hardhat-upgrades": "^1.22.0"
+  },
+  "type": "commonjs"
 }
