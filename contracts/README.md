@@ -15,6 +15,7 @@ export ETH_LIVE_NETWORK=https://mainnet.infura.io/v3/18b15ac5b3e8447191c6b233dcd
 export POLYGON_LIVE_NETWORK=https://rpc-mainnet.maticvigil.com/
 export POLYGON_LIVE_NETWORK=https://polygon-rpc.com/
 export BSC_LIVE_NETWORK=https://bsc-dataseed.binance.org/
+export VELAS_LIVE_NETWORK = https://explorer.velas.com/rpc
 export BSC_TESTNET_LIVE_NETWORK=https://data-seed-prebsc-2-s1.binance.org:8545/
 export PRIVATE_KEY=xx
 export CONTRACT_OWNER=0x0Bdb79846e8331A19A65430363f240Ec8aCC2A52
@@ -35,8 +36,6 @@ run npx hardhat test
 
 GAS_REPORT=true npx hardhat test
 
-run npx hardhat node
-
-npx hardhat run scripts/deploy.js to deploy contract
+`npx hardhat run scripts/deploy.js` to deploy contract
 
 ```

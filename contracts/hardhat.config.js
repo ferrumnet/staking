@@ -31,7 +31,7 @@ const config = {
     local: {
 	    chainId: 31337,
       url: `http://127.0.0.1:8545/`,
-      accounts: [getEnv('LOCAL_PRIVATE_KEY')],
+      accounts: [getEnv('PRIVATE_KEY')],
 	    gasPrice: 18000000000,
     },
     mainnet: {
@@ -59,13 +59,8 @@ const config = {
       accounts: [getEnv('PRIVATE_KEY')],
     },
     velas: {
-      chainId: '106',
-      url: 'https://explorer.velas.com/rpc',
-      account: [getEnv('PRIVATE_KEY')],
-    },
-    velastestnet: {
-      chainId: '111',
-      url: 'https://evmexplorer.testnet.velas.com/rpc',
+      chainId: 106,
+      url: getEnv('VELAS_LIVE_NETWORK'),
       account: [getEnv('PRIVATE_KEY')],
     }
   },
