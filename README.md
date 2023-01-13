@@ -2,7 +2,7 @@
 
 ## Steps to Run Locally
 
-- clone repository `https://github.com/ferrumnet/staking`.
+- clone repository `https://github.com/ferrumnet/staking`
 
 Hardware Requirements:
 - node version 14.18.2
