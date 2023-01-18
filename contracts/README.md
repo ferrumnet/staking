@@ -22,20 +22,25 @@ export CONTRACT_OWNER=0x0Bdb79846e8331A19A65430363f240Ec8aCC2A52
 export SET_SIGNER=true
 ```
 
-To deply contract, run from shell
+To deploy contract, run from shell
 
 ```
+- Change directory into the `contract` directory from root.
 
-change directory into the `contract` directory from root.
+- Run npm install from contract directory.
 
-run npm install from contract directory.
+- Run npx hardhat help
 
-run npx hardhat help
+- Run npx hardhat test
 
-run npx hardhat test
+- GAS_REPORT=true npx hardhat test
 
-GAS_REPORT=true npx hardhat test
+- make changes to staking contract deploy parameters as required in scripts/deploy.js directory.
 
-`npx hardhat run scripts/deploy.js` to deploy contract
+- `npx hardhat run scripts/deploy.js` to deploy contract
+
+- GAS_REPORT=true npx hardhat test
+
+- `npx hardhat run scripts/deploy.js` to deploy contract
 
 ```
