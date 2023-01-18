@@ -36,7 +36,7 @@ const config = {
     },
     mainnet: {
 	    chainId: 1,
-      url: `https://eth-mainnet.alchemyapi.io/v2/${getEnv('ALCHEMY_API_KEY') || '123123123'}`,
+      url: getEnv('ETH_LIVE_NETWORK'),
       accounts: [getEnv('PRIVATE_KEY')],
 	    gasPrice: 18000000000,
     },
