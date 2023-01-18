@@ -15,7 +15,7 @@ The respository directory comprises of 3 directories :
 
 **To run Staking contract deployer directory (admin):**
 
-From terminal :-
+From terminal:-
 
 - Change directory to admin directory
 
